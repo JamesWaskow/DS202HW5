@@ -25,3 +25,13 @@ library(ggplot2)
 ggplot(choco, aes(Review.Date)) + geom_bar()
 ```
 
+## Question Set 2
+```{r}
+ggplot(choco, aes(Rating)) + geom_histogram(bins = 15)
+```
+### The ratings are bimodal and slightly left skewed
+
+```{r}
+
+```
+
