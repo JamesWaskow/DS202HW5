@@ -1,6 +1,6 @@
 ---
 title: "HW3"
-author: "James Waskow"
+author: "James Waskow and Tessa Lanzel"
 date: "2023-03-06"
 output: html_document
 ---
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Import Data
 ```{r}
 choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
-head(choco)
+head(choco, 25)
 ```
 
 ## Question Set 1
@@ -37,6 +37,12 @@ ggplot(choco, aes(Rating, Cocoa.Pct)) + geom_point()
 Cocoa percentage does not seem to have a large correlation with rating
 
 ```{r}
-ggplot(dplyr::filter(choco, Company.Location %in% c("U.S.A.", "France", "Canada")), aes(Company, Rating)) + geom_boxplot()
+ggplot(dplyr::filter(choco, Company.Location %in% c("U.S.A.", "France", "Canada")), aes(Company.Location, Rating)) + geom_boxplot()
+```
+
+## Group Questions
+Does bean origin, either Brazil, Madagascar, or Panama, effect ratings?
+```{r}
+ggplot(dplyr::filter(choco, Specific.Bean.Origin %in% c("Brazil", "Madagascar", "Panama")), aes(Rating, Specific.Bean.Origin)) + geom_boxplot()
 ```
 
