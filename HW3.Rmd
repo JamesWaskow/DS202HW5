@@ -29,9 +29,14 @@ ggplot(choco, aes(Review.Date)) + geom_bar()
 ```{r}
 ggplot(choco, aes(Rating)) + geom_histogram(bins = 15)
 ```
-### The ratings are bimodal and slightly left skewed
+The ratings are bimodal and slightly left skewed, few small end outliers
 
 ```{r}
+ggplot(choco, aes(Rating, Cocoa.Pct)) + geom_point()
+```
+Cocoa percentage does not seem to have a large correlation with rating
 
+```{r}
+ggplot(dplyr::filter(choco, Company.Location %in% c("U.S.A.", "France", "Canada")), aes(Company, Rating)) + geom_boxplot()
 ```
 
