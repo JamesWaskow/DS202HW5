@@ -8,7 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
+## James Waskow
 ## Import Data
 ```{r}
 choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
@@ -46,3 +46,61 @@ Does bean origin, either Brazil, Madagascar, or Panama, effect ratings?
 ggplot(dplyr::filter(choco, Specific.Bean.Origin %in% c("Brazil", "Madagascar", "Panama")), aes(Rating, Specific.Bean.Origin)) + geom_boxplot()
 ```
 
+## Tessa Lanzel
+```{r}
+library(ggplot2)
+
+choco <- read.csv("https://ds202-at-isu.github.io/labs/data/choco.csv")
+head(choco)
+```
+# What is the overall number of chocolate bars rated?
+\
+```{r}
+x = nrow(choco)
+print(x)
+```
+# How does the number of ratings depend on the year? Draw a bar chart of the number of reports? 
+\
+```{r}
+ggplot(choco, aes(x = Review.Date)) + geom_bar(aes(weight= nrow(Rating)))
+```
+## How are ratings distributed? Draw a histogram of ratings and describe it. Don’t forget to mention outliers, if there are any.  
+```{r}
+ggplot(choco, aes(x = Rating)) + geom_histogram(bins = 15) 
+ggplot(choco, aes(x = Rating)) + geom_histogram(bins = 5)
+```
+\
+The ratings are distributed in a bell shape centered at 3, slightly left skewed.   
+
+## Do ratings depend on the cocoa percentage of a chocolate bar?
+
+```{r}
+ggplot(choco, aes(x = Rating, y = Cocoa.Pct)) + geom_point()
+```
+\
+Cocoa percentage does not seem to have any correlation with the rating since ratings have both low and high cocoa percentages associated with them.   
+
+
+## How do ratings compare across different company locations? Focus on the three locations with the most ratings:  
+```{r}
+ggplot(dplyr::filter(choco, Company.Location %in% c("U.S.A.", "France", "Canada")), aes(Company.Location, Rating)) + geom_boxplot()
+```
+\
+The boxplot above shows how rating compare across different company locations. 
+The median of all three locations are the same; however, Canada has a higher quartile above the median compared to the other locations.  
+
+## Group Questions
+## How do ratings compare across different bean types? Specifically between Criollo, Trinitario, and Forastero beans?
+
+```{r}
+ggplot(dplyr::filter(choco, Bean.Type %in% c("Criollo", "Trinitario", "Forastero")), aes(Bean.Type,Rating)) + geom_boxplot()
+
+```
+\
+
+This boxplot shows that Forastero beans have a median lower rating compared to the Trinitario and Criollo Beans. 
+\
+\
+
+## Workflow
+The workflow of this assignment was split between the two of us. We both spent time answering question set 1 and question set 2. Then separately came up with a question about the data and used graphic evidence to support our conclusions about the proposed question. One of us created the repository and the other forked it at the end to combine our answers.
